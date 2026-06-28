@@ -44,7 +44,7 @@ def is_valid_english_word(text : str):
 
 
    
-test_list = ['a', 'adequate', '$$#bool', 'bool', '']
+# test_list = ['a', 'adequate', '$$#bool', 'bool', '']
 
-print([item for item in test_list if is_valid_english_word(item)])
+# print([item for item in test_list if is_valid_english_word(item)])
 
