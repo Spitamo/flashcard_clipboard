@@ -55,16 +55,16 @@ class HotkeyListener:
         self._stop.set()
 
 
-def test(word):
-    print(word)
+# def test(word):
+#     print(word)
 
-obj = HotkeyListener("ctrl+c", 0.30, test)
+# obj = HotkeyListener("ctrl+c", 0.30, test)
 
 
-obj.start()
+# obj.start()
 
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    obj.stop()
+# try:
+#     while True:
+#         time.sleep(1)
+# except KeyboardInterrupt:
+#     obj.stop()
