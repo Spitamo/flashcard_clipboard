@@ -2,8 +2,8 @@ import time
 import threading
 import keyboard
 
-from clipboard import get_clipboard
-
+from .clipboard import get_clipboard
+from flashcard_clipboard.utils.text_normalizer import is_valid_english_word
 class HotkeyListener:
     """
     Listens to a hotkey (e.g. ctrl+c). When pressed:
@@ -12,9 +12,10 @@ class HotkeyListener:
       
     Runs keyboard hook in a background thread so asyncio loop can be the main thread.
     """
-    def __init__(self, hotkey: str, debounce_sec: float):
+    def __init__(self, hotkey: str, debounce_sec: float, on_word):
         self.hotkey = hotkey
         self.debounce_sec = debounce_sec
+        self.on_word = on_word
         
 
         self._thread: threading.Thread | None = None
@@ -28,7 +29,12 @@ class HotkeyListener:
             def _handler():
                 # Let OS update clipboard after Ctrl+C
                 time.sleep(self.debounce_sec)
-                print(get_clipboard())
+                
+                clip = get_clipboard()
+                
+                if is_valid_english_word(clip):
+                    # callback function called 
+                    self.on_word(clip)
                 
 
             keyboard.add_hotkey(self.hotkey, _handler)
@@ -47,3 +53,18 @@ class HotkeyListener:
 
     def stop(self):
         self._stop.set()
+
+
+def test(word):
+    print(word)
+
+obj = HotkeyListener("ctrl+c", 0.30, test)
+
+
+obj.start()
+
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    obj.stop()
