@@ -2,7 +2,7 @@ from infrastructure.hotkeys import HotkeyListener as h
 from infrastructure.translate.service import TranslatorService as t
 import time
 
-translator = t(.3) 
+translator = t(.9) 
 
 hotkey = h("ctrl+c", 0.30, lambda word : print(f"word : {word} -> {translator.translate(word, 'en', 'fa')}"))
 
