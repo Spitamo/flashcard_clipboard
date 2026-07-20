@@ -20,4 +20,3 @@ class TranslatorService:
                 
             except Exception:
                 return None
-
