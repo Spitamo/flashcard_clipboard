@@ -1,16 +1,16 @@
 import asyncio
 import time
-from flashcard_clipboard.config import Config
-from flashcard_clipboard.pipeline.queues import make_queues
+from config import Config
+from pipeline.queues import make_queues
 
-from flashcard_clipboard.domain.models import WordItem
-from flashcard_clipboard.services.dedup import DedupService
+from domain.models import WordItem
+from services.dedup import DedupService
 
-from flashcard_clipboard.pipeline.stages import translator_worker, db_worker
-from flashcard_clipboard.infrastructure.hotkeys import HotkeyListener
-from flashcard_clipboard.infrastructure.translate.service import TranslatorService
-from flashcard_clipboard.infrastructure.persistence.db import SqliteDB
-from flashcard_clipboard.infrastructure.persistence.repository import FlashcardRepository
+from pipeline.stages import translator_worker, db_worker
+from infrastructure.hotkeys import HotkeyListener
+from infrastructure.translate.service import TranslatorService
+from infrastructure.persistence.db import SqliteDB
+from infrastructure.persistence.repository import FlashcardRepository
 
 
 async def run_app(cfg: Config):

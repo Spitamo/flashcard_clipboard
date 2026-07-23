@@ -1,4 +1,4 @@
-from flashcard_clipboard.domain.models import WordItem, TranslationItem
+from domain.models import WordItem, TranslationItem
 import asyncio
 import time
 

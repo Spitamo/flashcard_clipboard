@@ -2,8 +2,8 @@ import asyncio
 import pytest
 from unittest.mock import Mock
 
-from flashcard_clipboard.domain.models import WordItem
-from flashcard_clipboard.pipeline.stages import translator_worker
+from domain.models import WordItem
+from pipeline.stages import translator_worker
 
 
 @pytest.mark.asyncio

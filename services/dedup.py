@@ -1,4 +1,4 @@
-from flashcard_clipboard.utils import LRU
+from utils.lru import LRU
 
 class DedupService:
    def __init__(self, capacity):

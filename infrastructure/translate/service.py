@@ -1,4 +1,4 @@
-from flashcard_clipboard.infrastructure.translate.clients import (
+from infrastructure.translate.clients import (
     google_translate,
     mymemory_translate,
 )

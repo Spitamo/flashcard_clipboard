@@ -3,7 +3,7 @@ import threading
 import keyboard
 
 from .clipboard import get_clipboard
-from flashcard_clipboard.utils.text_normalizer import is_valid_english_word
+from utils.text_normalizer import is_valid_english_word
 class HotkeyListener:
     """
     Listens to a hotkey (e.g. ctrl+c). When pressed:

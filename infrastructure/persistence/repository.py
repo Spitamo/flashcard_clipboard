@@ -1,5 +1,5 @@
-from flashcard_clipboard.domain.models import TranslationItem
-from flashcard_clipboard.infrastructure.persistence.db import SqliteDB
+from domain.models import TranslationItem
+from infrastructure.persistence.db import SqliteDB
 
 class FlashcardRepository:
     def __init__(self, db: SqliteDB):
