@@ -2,8 +2,6 @@
 
 
 
-
-
 \## Overview
 
 
@@ -22,27 +20,27 @@
 
 
 
-
-
 \## Project Structure
 
 
 
 ```text
 
-\## Project Structure
-
-
-
 flashcard\_clipboard/
+
+
 
 ├─ docs/
 
 │  └─ architecture.md
 
+
+
 ├─ domain/
 
 │  └─ models.py
+
+
 
 ├─ infrastructure/
 
@@ -64,6 +62,8 @@ flashcard\_clipboard/
 
 │     └─ service.py
 
+
+
 ├─ pipeline/
 
 │  ├─ app.py
@@ -74,9 +74,13 @@ flashcard\_clipboard/
 
 │  └─ test\_stages.py
 
+
+
 ├─ services/
 
 │  └─ dedup.py
+
+
 
 ├─ utils/
 
@@ -84,7 +88,7 @@ flashcard\_clipboard/
 
 │  └─ text\_normalizer.py
 
-│ 
+
 
 ├─ .gitignore
 
@@ -92,11 +96,5 @@ flashcard\_clipboard/
 
 └─ main.py
 
-
-
 ```
-
-
-
-
 
