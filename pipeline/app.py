@@ -30,6 +30,8 @@ async def run_app(cfg: Config):
       
       wi = WordItem(text=word, captured_at=time.time())
       loop.call_soon_threadsafe(queues.raw_queue.put_nowait, wi)
+      
+      print("[dedup] recent:", dedup.recent())
 
    
    hotkey = HotkeyListener(cfg.hotkey, cfg.debounce_sec, on_word)
