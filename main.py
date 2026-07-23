@@ -1,26 +1,12 @@
-from infrastructure.hotkeys import HotkeyListener as h
-from infrastructure.translate.service import TranslatorService as t
-from services.dedup import DedupService
-import time
+import asyncio
+from config import Config
+from pipeline.app import run_app
 
-lru = DedupService(100)
+print("main.py started")
 
-translator = t(.3) 
+def main():
+    cfg = Config()
+    asyncio.run(run_app(cfg))
 
-def test(word):
-    if lru.should_accept(word):
-        items = lru.recent()
-        print(f'items in LRU {items}')
-        return items[-1]
-
-
-hotkey = h("ctrl+c", 0.30, lambda word : print(f"word : {word} -> {translator.translate(test(word) ,'en', 'fa')}"))
-
-hotkey.start()
-
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    hotkey.stop()
-
+if __name__ == "__main__":
+    main()
