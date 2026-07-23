@@ -5,7 +5,7 @@ import time
 @dataclass(slots = True)
 class WordItem:
    text : str
-   time : float = time.time()
+   captured_at : float = time.time()
 
 @dataclass(slots=True)
 class TranslationItem:
