@@ -43,7 +43,7 @@ async def run_app(cfg: Config):
    uv_config = uvicorn.Config(
         "api:app",
         host="127.0.0.1",
-        port=cfg.api_port,
+        port=8000,
         log_level="warning",
     )
 
@@ -67,6 +67,14 @@ async def run_app(cfg: Config):
             notify_fn=notify_new_card,    
          ),
          name="db_worker",
+      ),
+      asyncio.create_task(
+         db_worker(
+            queues.translated_queue,
+            repo,
+            notify_fn=notify_new_card,    
+         ),
+         name="db_worker",
         ),
         asyncio.create_task(
             uv_server.serve(),                
@@ -75,7 +83,7 @@ async def run_app(cfg: Config):
       
    ]
 
-   print(f"Running on http://127.0.0.1:{cfg.api_port}")
+   print("Running on http://127.0.0.1:8000")
    print("Running. Select a word and press Ctrl+C (hotkey).")
    print("To stop the app: focus terminal and press Ctrl+Break or Ctrl+C (terminal interrupt).")
 

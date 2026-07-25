@@ -42,17 +42,11 @@ async def db_worker(
         try:
             await asyncio.to_thread(repo.upsert_flashcard, item)
             print(f"[db] saved: {item.source_text} -> {item.translated_text}")
-            if notify_fn:
-                try:                                    
-                    await notify_fn(                             
-                        item.source_text,                         
-                        item.translated_text,                    
-                        item.captured_at,                        
-                    )     
-                except Exception as e:
-                    print(f"ّ[db] Failed to notify UI {e}")
-
-        except Exception as e:
-            print(f"[db] Failed to save flashcard {e}")                                        
+            if notify_fn:                                    
+                await notify_fn(                             
+                    item.source_text,                         
+                    item.translated_text,                    
+                    item.captured_at,                        
+                )                                            
         finally:
             translated_queue.task_done()
