@@ -1,5 +1,7 @@
 import asyncio
 import time
+import uvicorn
+
 from config import Config
 from pipeline.queues import make_queues
 
@@ -11,6 +13,7 @@ from infrastructure.hotkeys import HotkeyListener
 from infrastructure.translate.service import TranslatorService
 from infrastructure.persistence.db import SqliteDB
 from infrastructure.persistence.repository import FlashcardRepository
+from api import notify_new_card  
 
 
 async def run_app(cfg: Config):
@@ -37,6 +40,15 @@ async def run_app(cfg: Config):
    hotkey = HotkeyListener(cfg.hotkey, cfg.debounce_sec, on_word)
    hotkey.start()
 
+   uv_config = uvicorn.Config(
+        "api:app",
+        host="127.0.0.1",
+        port=8000,
+        log_level="warning",
+    )
+
+   uv_server = uvicorn.Server(uv_config)
+
    tasks = [
       asyncio.create_task(
          translator_worker(
@@ -52,9 +64,23 @@ async def run_app(cfg: Config):
       asyncio.create_task(
          db_worker(queues.translated_queue, repo),
          name="db_worker",
-      )
+      ),
+      asyncio.create_task(
+         db_worker(
+            queues.translated_queue,
+            repo,
+            notify_fn=notify_new_card,    
+         ),
+         name="db_worker",
+        ),
+        asyncio.create_task(
+            uv_server.serve(),                
+            name="uvicorn",
+        ),
+      
    ]
 
+   print("Running on http://127.0.0.1:8000")
    print("Running. Select a word and press Ctrl+C (hotkey).")
    print("To stop the app: focus terminal and press Ctrl+Break or Ctrl+C (terminal interrupt).")
 

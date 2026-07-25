@@ -29,12 +29,21 @@ async def translator_worker(
         finally:
             raw_queue.task_done()
 
-async def db_worker(translated_queue: asyncio.Queue, repo):
+async def db_worker(
+    translated_queue: asyncio.Queue,
+    repo,
+    notify_fn=None,          
+):
     while True:
         item: TranslationItem = await translated_queue.get()
         try:
             await asyncio.to_thread(repo.upsert_flashcard, item)
-            # optional log:
             print(f"[db] saved: {item.source_text} -> {item.translated_text}")
+            if notify_fn:                                    
+                await notify_fn(                             
+                    item.source_text,                         
+                    item.translated_text,                    
+                    item.captured_at,                        
+                )                                            
         finally:
             translated_queue.task_done()
