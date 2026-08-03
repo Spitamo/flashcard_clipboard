@@ -3,6 +3,7 @@ import asyncio
 import time
 
 
+
 async def translator_worker(
     raw_queue: asyncio.Queue,
     translated_queue: asyncio.Queue,
@@ -26,6 +27,8 @@ async def translator_worker(
                     translated_at=time.time(),
                 )
                 await translated_queue.put(out)
+        except Exception as e:
+            print(f"[translator] Failed to translate {item.text}: {e}")
         finally:
             raw_queue.task_done()
 
@@ -39,11 +42,17 @@ async def db_worker(
         try:
             await asyncio.to_thread(repo.upsert_flashcard, item)
             print(f"[db] saved: {item.source_text} -> {item.translated_text}")
-            if notify_fn:                                    
-                await notify_fn(                             
-                    item.source_text,                         
-                    item.translated_text,                    
-                    item.captured_at,                        
-                )                                            
+            if notify_fn:
+                try:                                    
+                    await notify_fn(                             
+                        item.source_text,                         
+                        item.translated_text,                    
+                        item.captured_at,                        
+                    )     
+                except Exception as e:
+                    print(f"ّ[db] Failed to notify UI {e}")
+
+        except Exception as e:
+            print(f"[db] Failed to save flashcard {e}")                                        
         finally:
             translated_queue.task_done()
