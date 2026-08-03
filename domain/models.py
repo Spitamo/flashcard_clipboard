@@ -1,11 +1,11 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import time
 
 
 @dataclass(slots = True)
 class WordItem:
    text : str
-   captured_at : float = time.time()
+   captured_at : float = field(default_factory=time.time)
 
 @dataclass(slots=True)
 class TranslationItem:
