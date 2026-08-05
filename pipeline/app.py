@@ -60,11 +60,6 @@ async def run_app(cfg: Config):
          ),
          name="translator_worker"
       ),
-
-      asyncio.create_task(
-         db_worker(queues.translated_queue, repo),
-         name="db_worker",
-      ),
       asyncio.create_task(
          db_worker(
             queues.translated_queue,
