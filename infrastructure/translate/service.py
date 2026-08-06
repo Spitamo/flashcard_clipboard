@@ -10,13 +10,18 @@ class TranslatorService:
     def translate(self, text: str, source_lang: str, target_lang: str) -> str | None:
         # simple fallback strategy
         try:
-
-            return google_translate(text, source_lang, target_lang, timeout=self.timeout_sec)
+            
+            result = google_translate(text, source_lang, target_lang, timeout=self.timeout_sec)
+            if result != text:
+                return result
+            
             
         except Exception:
             try:
         
-                return mymemory_translate(text, source_lang, target_lang, timeout=self.timeout_sec)
-                
+                result = mymemory_translate(text, source_lang, target_lang, timeout=self.timeout_sec)
+                if result != text:
+                    return result
+            
             except Exception:
                 return None
