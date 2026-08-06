@@ -34,12 +34,18 @@ def is_valid_english_word(text : str):
    if not Word_regex.fullmatch(word):
       return False
 
+   if '-' in word:
+      text = word.split('-')
+      for item in text:
+         if zipf_frequency(item, "en") < 3:
+            return False
+
 
    #zipf scale
    score = zipf_frequency(word, "en")
 
    #initial Threshold
-   return score >= 3.0
+   return score >= 2.3
 
 
 
