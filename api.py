@@ -35,6 +35,10 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
     await manager.connect(ws)
