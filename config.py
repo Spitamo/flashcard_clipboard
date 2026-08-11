@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Config:
+    api_port: int = 51847
     # Dedup
     lru_capacity: int = 1024
 
