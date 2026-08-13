@@ -20,6 +20,7 @@ async function waitForBackend(maxWaitMs = 15000): Promise<void> {
     } catch {
       // backend not up yet, keep trying
     }
+    await new Promise((r) => setTimeout(r, 500));
   }
 }
 
