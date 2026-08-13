@@ -75,7 +75,7 @@ async def run_app(cfg: Config):
       
    ]
 
-   print("Running on http://127.0.0.1:51847")
+   print(f"Running on http://127.0.0.1:{cfg.api_port}")
    print("Running. Select a word and press Ctrl+C (hotkey).")
    print("To stop the app: focus terminal and press Ctrl+Break or Ctrl+C (terminal interrupt).")
 
