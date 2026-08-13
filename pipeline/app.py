@@ -43,7 +43,7 @@ async def run_app(cfg: Config):
    uv_config = uvicorn.Config(
         "api:app",
         host="127.0.0.1",
-        port=8000,
+        port=cfg.api_port,
         log_level="warning",
     )
 
@@ -75,7 +75,7 @@ async def run_app(cfg: Config):
       
    ]
 
-   print("Running on http://127.0.0.1:8000")
+   print("Running on http://127.0.0.1:51847")
    print("Running. Select a word and press Ctrl+C (hotkey).")
    print("To stop the app: focus terminal and press Ctrl+Break or Ctrl+C (terminal interrupt).")
 
