@@ -31,8 +31,8 @@ pnpm tauri dev
 
 The UI connects to:
 
-- `http://127.0.0.1:8000/flashcards` for the initial card list
-- `ws://127.0.0.1:8000/ws` for live card updates
+- `http://127.0.0.1:51847/flashcards` for the initial card list
+- `ws://127.0.0.1:51847/ws` for live card updates
 
 ## Project Structure
 
