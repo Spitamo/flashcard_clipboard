@@ -12,7 +12,7 @@
 
 **Simply press `Ctrl+C` (or `Cmd+C` on macOS) while the app is running to capture any copied text as a flashcard!**
 
-<img width="1910" height="946" alt="flashcard_preview" src="https://github.com/user-attachments/assets/20bdb179-b9e3-484e-b60f-a20954dba5ee" />
+![Flashcard demo](docs/assets/demo.gif)
 
 
 `flashcard_clipboard` turns copied text into flashcards with a local Python backend and a Tauri desktop UI. The backend watches the clipboard, translates or normalizes captured text, stores flashcards in SQLite, and broadcasts new cards over WebSocket so the UI can update live.
