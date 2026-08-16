@@ -1,6 +1,19 @@
-# flashcard_clipboard
+# Flashcard clipboard
+
+![Python](https://img.shields.io/badge/Python_3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Tauri](https://img.shields.io/badge/Tauri-FFC131?style=for-the-badge&logo=tauri&logoColor=black)
+![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=for-the-badge&logo=socket.io&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 ## Overview
+
+**Simply press `Ctrl+C` (or `Cmd+C` on macOS) while the app is running to capture any copied text as a flashcard!**
+
+<img width="1910" height="946" alt="flashcard_preview" src="https://github.com/user-attachments/assets/20bdb179-b9e3-484e-b60f-a20954dba5ee" />
+
 
 `flashcard_clipboard` turns copied text into flashcards with a local Python backend and a Tauri desktop UI. The backend watches the clipboard, translates or normalizes captured text, stores flashcards in SQLite, and broadcasts new cards over WebSocket so the UI can update live.
 
@@ -31,8 +44,8 @@ pnpm tauri dev
 
 The UI connects to:
 
-- `http://127.0.0.1:8000/flashcards` for the initial card list
-- `ws://127.0.0.1:8000/ws` for live card updates
+- `http://127.0.0.1:51847/flashcards` for the initial card list
+- `ws://127.0.0.1:51847/ws` for live card updates
 
 ## Project Structure
 
