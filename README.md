@@ -10,7 +10,7 @@
 
 ## Overview
 
-**Simply press `Ctrl+C` (or `Cmd+C` on macOS) while the app is running to capture any copied text as a flashcard!**
+### Zero friction flashcards: *just press Ctrl+C while the app is running to turn any copied text into a flashcard instantly.*
 
 ![Flashcard demo](docs/assets/demo.gif)
 
