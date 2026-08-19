@@ -57,7 +57,7 @@ Ctrl+C  ─▶  Hotkey Listener  ─▶  Text Normalizer  ─▶  Dedup (LRU)
                                         Tauri / React Desktop UI
 ```
 
-The backend runs on `asyncio` with two queues so that clipboard capture, translation, and persistence remain independent and non-blocking — pressing the hotkey never waits on a translation service or database write. See [`docs/architecture.md`](docs/architecture.md) for more detail.
+The backend runs on `asyncio` with two queues so that clipboard capture, translation, and persistence remain independent and non-blocking — pressing the hotkey never waits on a translation service or database write.
 
 ## Prerequisites
 
